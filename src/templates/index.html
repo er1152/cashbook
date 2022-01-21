@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block content %}
+<br>
+
+<div class="col-md-10">
+    <h1>シンプル家計簿</h1>
+</div>
+
+
+<hr>
+<form action="/add" method="post">
+    <div class="form-inline">
+        <div class="col-auto">
+            <input type="date" class="form-control" name="date" placeholder="日付" required="required">
+        </div>
+        <div class="col-auto">
+            <input type="number" class="form-control" name="cost" placeholder="金額" required="required">
+        </div>
+        <div class="col-auto">
+            <input type="datail" class="form-control" name="detail" placeholder="詳細" required="required">
+        </div>
+        <div class="col-auto">
+            <input type="category" class="form-control" name="category" placeholder="カテゴリ" required="required">
+        </div>
+        <div class="column col-auto">
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" name="radio" id="radio1" value="radio1">
+                <label class="custom-control-label" for="radio1">収入</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" name="radio" id="radio2" value="radio2"
+                    checked="checked">
+                <label class="custom-control-label" for="radio2">支出</label>
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <button type="add" class="btn btn-primary">追加</button>
+    </div>
+</form>
+
+
+<hr class="mt-5">
+
+<form class="form-inline mb-2" action="/select" method="post">
+    <h1>{{ year }}年{{ month }}月</h1>
+    <div class="col-auto">
+        <input type="month" class="form-control" name="month" required="required">
+        <button type="select" class="btn btn-primary"> 選択</button>
+    </div>
+</form>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table">
+            <thead class="table-dark">
+                <tr>
+                    <th>日付</th>
+                    <th>金額</th>
+                    <th>詳細</th>
+                    <th>カテゴリ</th>
+                </tr>
+            </thead>
+            {% for i in item %}
+            <tr>
+                <td>{{ i.date.year }}/{{ i.date.month }}/{{ i.date.day }}</td>
+                {% if i.is_in %}
+                <td>+ {{ i.cost }} 円</td>
+                {% else %}
+                <td>- {{ i.cost }} 円</td>
+                {% endif %}
+                <td>{{ i.detail }}</td>
+                <td>{{ i.category }}</td>
+                <td><a href="/delete/{{i.id}}" type="delete" class="btn btn-danger">削除</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="col-md-3">
+        {% if graph %}
+        <img src="data:image/png;base64,{{graph}}" width="700" height="550"></img>
+        {% endif %}
+    </div>
+</div>
+<b id="sum">{{year}}年{{month}}月　支出：{{expense}}円　収入：{{income}}円　収支：{{income-expense}}円</b>
+
+
+
+{% endblock %}
