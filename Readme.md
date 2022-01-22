@@ -1,7 +1,7 @@
 # シンプル家計簿 #
 heroku  
 https://simplecashbook.herokuapp.com/  
-(FastAPIの機能で後ろにdocsを付けるとAPI仕様ドキュメントが同時生成される https://simplecashbook.herokuapp.com/docs )
+(FastAPIの機能で後ろにdocsを付けるとAPI仕様ドキュメントが自動生成される https://simplecashbook.herokuapp.com/docs )
 
 ## 概要 ##
 一画面のみで完結するシンプルな家計簿アプリ。カテゴリ別の支出やカテゴリ別の割合の円グラフを表示する機能あり
