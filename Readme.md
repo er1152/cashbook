@@ -32,8 +32,21 @@ uvicorn           0.17.0
 matplotlib          3.5.1  
 japanize-matplotlib 1.1.3  
 
+# ファイルの説明 #
+controllers.py  
+コントローラー。メインの処理を含む  
+create_table.py  
+データベース生成ファイル。実行には関係ない  
+db.py  
+データベース定義  
+db.sqlite3  
+データベース  
+models.py  
+モデル。今回はItem（項目）モデルのみ  
+run.py  
+実行ファイル。コマンドラインからでも実行可  
 
 
-参考
+# 参考 #  
 https://rightcode.co.jp/blog/information-technology/fastapi-tutorial-todo-apps-environment  
 https://pyhaya.hatenablog.com/entry/2018/11/04/180000  
