@@ -82,7 +82,15 @@ def index(request: Request):
     db.session.close()
     graph= make_graph(items)
 
-    return graph
+    return templates.TemplateResponse('index.html',
+                                      {'request': request,
+                                       'item': items,
+                                       'year' : this_year,
+                                       'month' : this_month,
+                                       'income' : income,
+                                       'expense' : expense,
+                                       'graph' : graph                                     
+                                       })
 
 # 追加
 @app.post("/add")
